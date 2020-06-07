@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+
+
+    <modules>
+        <!--基础模块-->
+        <module>yichu-base</module>
+        <!--共通模块-->
+        <module>yichu-common</module>
+        <!--数据库自动生成模块-->
+        <module>yichu-mbpg</module>
+
+    </modules>
+
+
+    <groupId>com.dlyong</groupId>
+    <artifactId>yichu</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>yichu</name>
+    <packaging>pom</packaging>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <yichu-common.version>1.0-SNAPSHOT</yichu-common.version>
+        <yichu-mbpg.version>1.0-SNAPSHOT</yichu-mbpg.version>
+        <mybatisplus.version>3.3.2</mybatisplus.version>
+        <hutool.version>5.3.5</hutool.version>
+        <druid.version>1.1.10</druid.version>
+        <mysql-connector.version>8.0.15</mysql-connector.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <!--通用模块-->
+            <dependency>
+                <groupId>com.dlyong</groupId>
+                <artifactId>yichu-common</artifactId>
+                <version>${yichu-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dlyong</groupId>
+                <artifactId>yichu-mbpg</artifactId>
+                <version>${yichu-mbpg.version}</version>
+            </dependency>
+            <!-- hutool-all/java 工具类 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!--集成druid连接池-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- mybatis-plus-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+            <!--Mysql数据库驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
