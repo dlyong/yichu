@@ -19,6 +19,7 @@
         <module>yichu-common</module>
         <!--数据库自动生成模块-->
         <module>yichu-mbpg</module>
+        <module>yichu-security</module>
 
     </modules>
 
@@ -36,10 +37,12 @@
         <java.version>1.8</java.version>
         <yichu-common.version>1.0-SNAPSHOT</yichu-common.version>
         <yichu-mbpg.version>1.0-SNAPSHOT</yichu-mbpg.version>
+        <yichu-security.version>1.0-SNAPSHOT</yichu-security.version>
         <mybatisplus.version>3.3.2</mybatisplus.version>
         <hutool.version>5.3.5</hutool.version>
         <druid.version>1.1.10</druid.version>
         <mysql-connector.version>8.0.15</mysql-connector.version>
+        <jjwt.version>0.9.0</jjwt.version>
     </properties>
 
     <dependencies>
@@ -74,6 +77,11 @@
                 <artifactId>yichu-mbpg</artifactId>
                 <version>${yichu-mbpg.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.dlyong</groupId>
+                <artifactId>yichu-security</artifactId>
+                <version>${yichu-security.version}</version>
+            </dependency>
             <!-- hutool-all/java 工具类 -->
             <dependency>
                 <groupId>cn.hutool</groupId>
@@ -97,6 +105,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector.version}</version>
+            </dependency>
+            <!--JWT(Json Web Token)登录支持-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
