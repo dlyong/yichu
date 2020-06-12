@@ -1,6 +1,5 @@
-package com.dlyong.yichu.domain.bo;
-
-import com.dlyong.yichu.domain.entity.BaseUser;
+package com.dlyong.yichu.domain.baseuser.bo;
+import com.dlyong.yichu.domain.baseuser.entity.BaseUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

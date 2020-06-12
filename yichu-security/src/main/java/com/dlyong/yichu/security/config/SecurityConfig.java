@@ -1,6 +1,8 @@
 package com.dlyong.yichu.security.config;
 
 import com.dlyong.yichu.security.component.JwtAuthenticationTokenFilter;
+import com.dlyong.yichu.security.util.JWTTokenUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,9 +14,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
-@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
     /**
      * 用于配置需要拦截的url路径、jwt过滤器及出异常后的处理器；
@@ -37,26 +40,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     "/**/*.css",
                     "/**/*.js",
                     "/swagger-resources/**",
-                    "/v2/api-docs/**",
-                    "/admin/login", "/admin/register" // 登录和注册允许匿名访问
-                    ).permitAll()// 允许对于网站静态资源的无授权访问
+                    "/v2/api-docs/**"// 登录和注册允许匿名访问
+                    ).permitAll()
+            .antMatchers("/baseUser/login", "/baseUser/register")// 对登录注册要允许匿名访问
+             .permitAll()// 允许对于网站静态资源的无授权访问
             .antMatchers(HttpMethod.OPTIONS).permitAll() //跨域请求会先进行一次options请求
             .anyRequest().authenticated();// 除上面的请求全部需要鉴权认证
         // 禁用缓存
         http.headers().cacheControl();
-        System.out.println(jwtAuthenticationTokenFilter());
+        //System.out.println(jwtAuthenticationTokenFilter());
         // 添加JWT filter
-         http.addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+      //  http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
     }
-    @Bean
+   /* @Bean
     public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter() {
         return new JwtAuthenticationTokenFilter();
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder(){
         return  new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public JWTTokenUtil jwtTokenUtil() {
+        return new JWTTokenUtil();
+    }
 }
