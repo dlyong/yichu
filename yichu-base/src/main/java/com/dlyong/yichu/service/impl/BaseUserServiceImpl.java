@@ -67,4 +67,12 @@ public class BaseUserServiceImpl implements BaseUserService {
         if(ObjectUtil.isEmpty(baseUser)) throw new UsernameNotFoundException("用户名或密码错误");
         return new BaseUserDetails(baseUser);
     }
+
+    @Override
+    public void register(String username, String password) {
+        BaseUser baseUser = new BaseUser();
+        baseUser.setUsername(username);
+        baseUser.setPassword(passwordEncoder.encode(password));
+        baseUserMapper.insert(baseUser);
+    }
 }

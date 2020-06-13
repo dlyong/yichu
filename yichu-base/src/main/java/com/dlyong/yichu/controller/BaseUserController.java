@@ -40,5 +40,12 @@ public class BaseUserController {
        return   ResponseDTO.success(tokenMap);
     }
 
+    @PostMapping(value = "/register")
+    public ResponseDTO register(@RequestBody BaseUserDTO baseUserParam) {
+        baseUserService.register(baseUserParam.getUsername(), baseUserParam.getPassword());
+        return   ResponseDTO.success(null,"注册成功");
+    }
+
+
 
 }

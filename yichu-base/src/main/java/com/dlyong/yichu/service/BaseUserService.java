@@ -21,4 +21,11 @@ public interface BaseUserService {
      * @return
      */
     UserDetails loadUserByUsername(String username);
+
+    /**
+     * 用户注册
+     * @param username
+     * @param password
+     */
+    void register(String username, String password);
 }

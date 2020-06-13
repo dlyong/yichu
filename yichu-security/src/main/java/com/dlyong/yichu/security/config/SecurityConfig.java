@@ -1,11 +1,15 @@
 package com.dlyong.yichu.security.config;
 
 import com.dlyong.yichu.security.component.JwtAuthenticationTokenFilter;
+import com.dlyong.yichu.security.util.JWTTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -47,4 +51,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
     }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return  new BCryptPasswordEncoder();
+    }
+    @Bean
+    public JWTTokenUtil jwtTokenUtil(){
+        return  new JWTTokenUtil();
+    }
+
 }
